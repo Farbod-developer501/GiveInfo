@@ -11,7 +11,10 @@ internal class Program
     static UserInfo.Information information = new UserInfo.Information();
     static void Main(string[] args)
     {
-        App();
+        while (true) 
+        {
+         App();
+        }
     }
     static void App() 
     {
