@@ -8,23 +8,40 @@ internal class Program
     static UserInfo.Information information = new UserInfo.Information();
     static void Main(string[] args)
     {
-        while (true) 
-        {
-         App();
-        }
+        App();
     }
-    static void App() 
+    static bool App() 
     {
-        style();
-        UserGender();
-        UserName();
-        UserLastName();
-        UserFatherName();
-        UserCellPhone();
-        UserAge();
-        UserSelect();
-        Console.ReadKey();
-
+        while (true)
+        {
+            try 
+            {
+                style();
+                Console.WriteLine("Do you want to start? if you want press 1 else press 2");
+                int askToStart = Convert.ToInt32(Console.ReadLine());
+                if (askToStart == 1)
+                {
+                    UserGender();
+                    UserName();
+                    UserLastName();
+                    UserFatherName();
+                    UserCellPhone();
+                    UserAge();
+                    UserSelect();
+                    Console.ReadKey();
+                }
+                else if (askToStart == 2)
+                {
+                        Console.WriteLine("Ok Good bay");
+                        return true;
+                }
+            } 
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"The Error is {ex.Message}");
+                Console.Clear();
+            }
+        }
     }
     static void style()
     {
@@ -58,7 +75,7 @@ internal class Program
 
                 if (information.Gender.ToUpper() == "YES" || information.Gender.ToUpper() == "NO")
                 {
-                    Console.WriteLine("Your choice was " + information.Gender);
+                    Console.WriteLine($"Your choice was {information.Gender}");
                     Console.Clear();
                     return true;
                 }
@@ -68,7 +85,6 @@ internal class Program
                 Console.WriteLine($"Invalid input. The Error Is {ex.Message} Please try again.");
             }
         }
-
     }
     static bool UserName() 
     {
@@ -81,18 +97,14 @@ internal class Program
                 if (information.Name is null)
                 {
                     Console.WriteLine("You Name was null");
-                  
-                   
                 }
                 else if (information.Name.Length <= 2)
                 {
                     Console.WriteLine("Your length of the name is shorter than 2 character");
-                  
                 }
                 else if (information.Name.Length >= 50)
                 {
                     Console.WriteLine("Your length of the name is shorter than 2 character");
-
                 }
                 else
                 {
@@ -104,7 +116,6 @@ internal class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
-
             }
         }
     }
@@ -119,18 +130,14 @@ internal class Program
                 if (information.LastName is null)
                 {
                     Console.WriteLine("You last name was null");
-
-
                 }
                 else if (information.LastName.Length <= 2)
                 {
                     Console.WriteLine("Your length of the last name is shorter than 2 character");
-
                 }
                 else if (information.LastName.Length >= 50)
                 {
                     Console.WriteLine("Your length of the last name is shorter than 2 character");
-
                 }
                 else
                 {
@@ -142,10 +149,8 @@ internal class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
-
             }
         }
-
     }
     static bool UserFatherName()
     {
@@ -158,8 +163,6 @@ internal class Program
                 if (information.FatherName is null)
                 {
                     Console.WriteLine("You father name was null");
-
-
                 }
                 else if (information.FatherName.Length <= 2)
                 {
@@ -169,7 +172,6 @@ internal class Program
                 else if (information.FatherName.Length >= 50)
                 {
                     Console.WriteLine("Your length of the father name is shorter than 2 character");
-
                 }
                 else
                 {
@@ -181,9 +183,7 @@ internal class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
-
             }
-
         }
     }
     static bool UserCellPhone() 
@@ -265,7 +265,6 @@ internal class Program
             {
                 Console.WriteLine($"The Error is {ex.Message}");
             }
-            
         }
     }
     static bool UserSelect() 
@@ -313,11 +312,6 @@ internal class Program
             {
                 Console.WriteLine($"The Error is {ex.Message}");
             }
-            
         }
     }
 }
-     
-
-
-
