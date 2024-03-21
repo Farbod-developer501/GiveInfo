@@ -28,7 +28,7 @@ internal class Program
                     UserCellPhone();
                     UserAge();
                     UserSelect();
-                    Console.ReadKey();
+                   
                 }
                 else if (askToStart == 2)
                 {
@@ -48,13 +48,13 @@ internal class Program
         for (int i = 12; i < 50; i++)
         {
             Console.SetCursorPosition(i, 1);
-            Console.WriteLine(" Farbod_mirzaee_console_app ");
+            Console.WriteLine(" Farbod_Mirzaee ");
             Thread.Sleep(75);
         }
         for (int i = 50; i > 0; i--)
         {
             Console.SetCursorPosition(i, 1);
-            Console.Write(" Farbod_mirzaee_console_app ");
+            Console.Write(" Farbod_Mirzaee ");
             Thread.Sleep(75);
         }
         for (int i = 0; i < 50; i++)
@@ -76,6 +76,8 @@ internal class Program
                 if (information.Gender.ToUpper() == "YES" || information.Gender.ToUpper() == "NO")
                 {
                     Console.WriteLine($"Your choice was {information.Gender}");
+                    Console.WriteLine("press enter key to continue");
+                    Console.ReadKey();
                     Console.Clear();
                     return true;
                 }
@@ -103,11 +105,13 @@ internal class Program
                     case var name when name.Length <= 2:
                         Console.WriteLine("Your length of the name is shorter than 2 character");
                         break;
-                    case var name when name.Length <= 50:
+                    case var name when name.Length >= 50:
                         Console.WriteLine("Your length of the name is more than 50 character");
                         break;
                     default:
                         Console.WriteLine($"Your Name is {information.Name}");
+                        Console.WriteLine("press enter key to continue");
+                        Console.ReadKey();
                         Console.Clear();
                         return true;
                 }
@@ -131,14 +135,16 @@ internal class Program
                     case null:
                         Console.WriteLine("your last name was null");
                         break;
-                    case var name when name.Length <= 2:
+                    case var lastName when lastName.Length <= 2:
                         Console.WriteLine("Your length of the last name is shorter than 2 character");
                         break;
-                    case var name when name.Length >= 50:
+                    case var lastName when lastName.Length >= 50:
                         Console.WriteLine("Your length of the last name is more than 50 character");
                         break;
                     default:
-                        Console.WriteLine($"you father name is {information.FatherName}");
+                        Console.WriteLine($"you last name is {information.LastName}");
+                        Console.WriteLine("press enter key to continue");
+                        Console.ReadKey();
                         Console.Clear();
                         return true;
                 }
@@ -163,17 +169,18 @@ internal class Program
                         Console.WriteLine("You father name was null");
                         break;
 
-                    case var name when name.Length <= 2:
+                    case var fatherName when fatherName.Length <= 2:
                         Console.WriteLine("Your length of the father name is shorter than 2 characters");
                         break;
 
-                    case var name when name.Length >= 50:
+                    case var fatherName when fatherName.Length >= 50:
                         Console.WriteLine("Your length of the father name is more than 50 characters");
                         break;
 
                     default:
                         Console.WriteLine($"Your father name is {information.FatherName}");
-                        Console.Clear();
+                        Console.WriteLine("press enter key to continue");
+                        Console.ReadKey();
                         return true;
                 }
             }
@@ -203,17 +210,17 @@ internal class Program
                         Console.ReadKey();
                         Console.Clear();
                         return true;
-                    case " ":
-                        var res1 = "0" + information.Cellphone.TrimStart(); // Add '0' at the beginning and remove leading spaces
-                        res1 = res1.Substring(0, 4); // Get the first four characters
-                        Console.WriteLine($"The first four characters of your cell phone: {res1}");
-                        information.Cellphone = res1; // Update the Cellphone value in the information object
-                        Console.WriteLine("press enter key to continue");
+                    case var phone when !phone.StartsWith("0"):
+                        var resPhone = "0" + information.Cellphone; // Add '0' at the beginning
+                        var resPhonesub = resPhone.Substring(0, 4); // Get the first four characters
+                        Console.WriteLine($"The first four characters of your cell phone: {resPhonesub}");
+                        information.Cellphone = resPhone; // Update the Cellphone value in the information object
+                        Console.WriteLine("Press enter key to continue");
                         Console.ReadKey();
                         Console.Clear();
                         return true;
                     default:
-                        if (information.Cellphone.Length < 11 || information.Cellphone.Length > 11)
+                        if (information.Cellphone.Length != 11)
                         {
                             Console.WriteLine("you enter wrong format do it again");
                         }
@@ -254,6 +261,8 @@ internal class Program
                 else
                 {
                     Console.WriteLine($"Your Birthdate is : {1403 - information.Age} ");
+                    Console.WriteLine("press enter key to continue");
+                    Console.ReadKey();
                     Console.Clear();
                     return true;
                 }
@@ -282,6 +291,9 @@ internal class Program
                         $"Cell Phone: {information.Cellphone}";
 
                     Console.WriteLine($"Here are your details as Text:\n{textDetails}");
+                    Console.WriteLine("press enter key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
                     return true;
                 }
                 else if (information.Select == 2)
@@ -297,6 +309,8 @@ internal class Program
                     };
                     var JsonDetail = JsonConvert.SerializeObject(_JsonDetails);
                     Console.WriteLine($"Here is your summary in JSON format:\n{JsonDetail}\n");
+                    Console.WriteLine("press enter key to continue");
+                    Console.ReadKey();
                     Console.Clear();
                     return true;
                 }
