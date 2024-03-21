@@ -16,5 +16,3 @@ public class Information
     public byte Age { get; set; }
     public byte Select { get; set; }
 }
-
-
