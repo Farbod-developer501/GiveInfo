@@ -10,11 +10,11 @@ internal class Program
     {
         App();
     }
-    static bool App() 
+    static bool App()
     {
         while (true)
         {
-            try 
+            try
             {
                 style();
                 Console.WriteLine("Do you want to start? if you want press 1 else press 2");
@@ -32,11 +32,11 @@ internal class Program
                 }
                 else if (askToStart == 2)
                 {
-                        Console.WriteLine("Ok Good bay");
-                        return true;
+                    Console.WriteLine("Ok Good bay");
+                    return true;
                 }
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
                 Console.Clear();
@@ -63,8 +63,8 @@ internal class Program
             Console.ForegroundColor = ConsoleColor.Blue;
         }
     }
-    static bool UserGender() 
-    
+    static bool UserGender()
+
     {
         while (true)
         {
@@ -80,37 +80,36 @@ internal class Program
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input. The Error Is {ex.Message} Please try again.");
             }
         }
     }
-    static bool UserName() 
+    static bool UserName()
     {
         while (true)
         {
-            try 
+            try
             {
                 Console.WriteLine("Please enter your name");
                 information.Name = Console.ReadLine();
-                if (information.Name is null)
+
+                switch (information.Name)
                 {
-                    Console.WriteLine("You Name was null");
-                }
-                else if (information.Name.Length <= 2)
-                {
-                    Console.WriteLine("Your length of the name is shorter than 2 character");
-                }
-                else if (information.Name.Length >= 50)
-                {
-                    Console.WriteLine("Your length of the name is shorter than 2 character");
-                }
-                else
-                {
-                    Console.WriteLine($"Your Name is {information.Name}");
-                    Console.Clear();
-                    return true;
+                    case null:
+                        Console.WriteLine("You Name was null");
+                        break;
+                    case var name when name.Length <= 2:
+                        Console.WriteLine("Your length of the name is shorter than 2 character");
+                        break;
+                    case var name when name.Length <= 50:
+                        Console.WriteLine("Your length of the name is more than 50 character");
+                        break;
+                    default:
+                        Console.WriteLine($"Your Name is {information.Name}");
+                        Console.Clear();
+                        return true;
                 }
             }
             catch (Exception ex)
@@ -119,7 +118,7 @@ internal class Program
             }
         }
     }
-    static bool UserLastName() 
+    static bool UserLastName()
     {
         while (true)
         {
@@ -127,23 +126,21 @@ internal class Program
             {
                 Console.WriteLine("Please enter your last name");
                 information.LastName = Console.ReadLine();
-                if (information.LastName is null)
+                switch (information.LastName)
                 {
-                    Console.WriteLine("You last name was null");
-                }
-                else if (information.LastName.Length <= 2)
-                {
-                    Console.WriteLine("Your length of the last name is shorter than 2 character");
-                }
-                else if (information.LastName.Length >= 50)
-                {
-                    Console.WriteLine("Your length of the last name is shorter than 2 character");
-                }
-                else
-                {
-                    Console.WriteLine($"Your Name is {information.LastName}");
-                    Console.Clear();
-                    return true;
+                    case null:
+                        Console.WriteLine("your last name was null");
+                        break;
+                    case var name when name.Length <= 2:
+                        Console.WriteLine("Your length of the last name is shorter than 2 character");
+                        break;
+                    case var name when name.Length >= 50:
+                        Console.WriteLine("Your length of the last name is more than 50 character");
+                        break;
+                    default:
+                        Console.WriteLine($"you father name is {information.FatherName}");
+                        Console.Clear();
+                        return true;
                 }
             }
             catch (Exception ex)
@@ -160,24 +157,24 @@ internal class Program
             {
                 Console.WriteLine("Please enter your father name");
                 information.FatherName = Console.ReadLine();
-                if (information.FatherName is null)
+                switch (information.FatherName)
                 {
-                    Console.WriteLine("You father name was null");
-                }
-                else if (information.FatherName.Length <= 2)
-                {
-                    Console.WriteLine("Your length of the father name is shorter than 2 character");
+                    case null:
+                        Console.WriteLine("You father name was null");
+                        break;
 
-                }
-                else if (information.FatherName.Length >= 50)
-                {
-                    Console.WriteLine("Your length of the father name is shorter than 2 character");
-                }
-                else
-                {
-                    Console.WriteLine($"Your father name is {information.FatherName}");
-                    Console.Clear();
-                    return true;
+                    case var name when name.Length <= 2:
+                        Console.WriteLine("Your length of the father name is shorter than 2 characters");
+                        break;
+
+                    case var name when name.Length >= 50:
+                        Console.WriteLine("Your length of the father name is more than 50 characters");
+                        break;
+
+                    default:
+                        Console.WriteLine($"Your father name is {information.FatherName}");
+                        Console.Clear();
+                        return true;
                 }
             }
             catch (Exception ex)
@@ -186,49 +183,49 @@ internal class Program
             }
         }
     }
-    static bool UserCellPhone() 
+    static bool UserCellPhone()
     {
         while (true)
         {
-            try 
+            try
             {
-                Console.WriteLine("Please enter your cell phone ");
+                Console.WriteLine("Please Enter Your Cellphone number");
                 information.Cellphone = Console.ReadLine();
-
-                if (information.Cellphone.Substring(0, 1) == "+")
+                switch (information.Cellphone.Substring(0, 1))
                 {
-                    var res = information.Cellphone.Replace("+", "0");
-                    Console.WriteLine(res);
-                    res = res.Substring(0, 4); // Change to get the first four characters
-                    Console.WriteLine($"The first four characters of your cell phone: {res}");
-                    information.Cellphone = res; // Update the Cellphone value in the information object
-                    Console.Clear();
-                    return true;
-                }
-                else if (information.Cellphone.StartsWith(" "))
-                {
-                    var res = "0" + information.Cellphone.TrimStart(); // Add '0' at the beginning and remove leading spaces
-                    res = res.Substring(0, 4); // Get the first four characters
-                    Console.WriteLine($"The first four characters of your cell phone: {res}");
-                    information.Cellphone = res; // Update the Cellphone value in the information object
-                    Console.Clear();
-                    return true;
-                }
-                else if (information.Cellphone.Length < 11)
-                {
-                    Console.WriteLine("you enter wrong format do it again");
-                }
-                else if (information.Cellphone.Length > 11)
-                {
-                    Console.WriteLine("you enter wrong format do it again");
-                }
-                else
-                {
-                    Console.WriteLine($"This is your cell phone {information.Cellphone}");
-                    string res = information.Cellphone.Substring(0, 4);
-                    Console.WriteLine($"The First four charachter you cell phone: {res}");
-                    Console.Clear();
-                    return true;
+                    case "+":
+                        var res = information.Cellphone.Replace("+", "0");
+                        Console.WriteLine(res);
+                        res = res.Substring(0, 4); // Change to get the first four characters
+                        Console.WriteLine($"The first four characters of your cell phone: {res}");
+                        information.Cellphone = res; // Update the Cellphone value in the information object
+                        Console.WriteLine("press enter key to continue");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return true;
+                    case " ":
+                        var res1 = "0" + information.Cellphone.TrimStart(); // Add '0' at the beginning and remove leading spaces
+                        res1 = res1.Substring(0, 4); // Get the first four characters
+                        Console.WriteLine($"The first four characters of your cell phone: {res1}");
+                        information.Cellphone = res1; // Update the Cellphone value in the information object
+                        Console.WriteLine("press enter key to continue");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return true;
+                    default:
+                        if (information.Cellphone.Length < 11 || information.Cellphone.Length > 11)
+                        {
+                            Console.WriteLine("you enter wrong format do it again");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"This is your cell phone {information.Cellphone}");
+                            string res2 = information.Cellphone.Substring(0, 4);
+                            Console.WriteLine($"The First four characters of your cell phone: {res2}");
+                            Console.Clear();
+                            return true;
+                        }
+                        break;
                 }
             }
             catch (Exception ex)
@@ -237,11 +234,11 @@ internal class Program
             }
         }
     }
-    static bool UserAge() 
+    static bool UserAge()
     {
         while (true)
         {
-            try 
+            try
             {
                 Console.WriteLine("plaese enter your age:");
                 information.Age = byte.Parse(Console.ReadLine());
@@ -260,14 +257,14 @@ internal class Program
                     Console.Clear();
                     return true;
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
             }
         }
     }
-    static bool UserSelect() 
+    static bool UserSelect()
     {
         while (true)
         {
@@ -289,14 +286,14 @@ internal class Program
                 }
                 else if (information.Select == 2)
                 {
-                    var _JsonDetails = new 
+                    var _JsonDetails = new
                     {
-                   Gender = information.Gender,
-                   Name = information.Name,
-                   LastName = information.LastName,
-                   FatherName = information.FatherName,
-                   Cellphone =  information.Cellphone,
-                   Age =  information.Age
+                        Gender = information.Gender,
+                        Name = information.Name,
+                        LastName = information.LastName,
+                        FatherName = information.FatherName,
+                        Cellphone = information.Cellphone,
+                        Age = information.Age
                     };
                     var JsonDetail = JsonConvert.SerializeObject(_JsonDetails);
                     Console.WriteLine($"Here is your summary in JSON format:\n{JsonDetail}\n");
@@ -307,8 +304,8 @@ internal class Program
                 {
                     Console.WriteLine("you didn't press key");
                 }
-            } 
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
             }
