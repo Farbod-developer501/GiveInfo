@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Xml.Linq;
-using UserInfo;
-using Newtonsoft;
+﻿using Newtonsoft;
 using Newtonsoft.Json;
 
 namespace ConsoleApp5;
@@ -110,7 +107,6 @@ internal class Program
 
             }
         }
-     
     }
     static bool UserLastName() 
     {
@@ -201,7 +197,7 @@ internal class Program
 
                 if (information.Cellphone.Substring(0, 1) == "+")
                 {
-                    string res = information.Cellphone.Replace("+", "0");
+                    var res = information.Cellphone.Replace("+", "0");
                     Console.WriteLine(res);
                     res = res.Substring(0, 4); // Change to get the first four characters
                     Console.WriteLine($"The first four characters of your cell phone: {res}");
@@ -211,7 +207,7 @@ internal class Program
                 }
                 else if (information.Cellphone.StartsWith(" "))
                 {
-                    string res = "0" + information.Cellphone.TrimStart(); // Add '0' at the beginning and remove leading spaces
+                    var res = "0" + information.Cellphone.TrimStart(); // Add '0' at the beginning and remove leading spaces
                     res = res.Substring(0, 4); // Get the first four characters
                     Console.WriteLine($"The first four characters of your cell phone: {res}");
                     information.Cellphone = res; // Update the Cellphone value in the information object
@@ -260,7 +256,7 @@ internal class Program
                 }
                 else
                 {
-                    Console.WriteLine($"Your Birthdate is : {1402 - information.Age} ");
+                    Console.WriteLine($"Your Birthdate is : {1403 - information.Age} ");
                     Console.Clear();
                     return true;
                 }
