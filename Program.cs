@@ -1,5 +1,6 @@
 ﻿using Newtonsoft;
 using Newtonsoft.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConsoleApp5;
 
@@ -28,7 +29,6 @@ internal class Program
                     UserCellPhone();
                     UserAge();
                     UserSelect();
-                   
                 }
                 else if (askToStart == 2)
                 {
@@ -39,7 +39,9 @@ internal class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
+                Console.ReadKey();
                 Console.Clear();
+                return true;
             }
         }
     }
@@ -64,9 +66,9 @@ internal class Program
         }
     }
     static bool UserGender()
-
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 3)
         {
             try
             {
@@ -81,16 +83,23 @@ internal class Program
                     Console.Clear();
                     return true;
                 }
+                else 
+                {
+                    invalidAttempts++;
+                    Console.WriteLine("Invalid input. Please try again.");
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input. The Error Is {ex.Message} Please try again.");
             }
         }
+          throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserName()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 7)
         {
             try
             {
@@ -99,7 +108,7 @@ internal class Program
 
                 switch (information.Name)
                 {
-                    case null:
+                    case "":
                         Console.WriteLine("You Name was null");
                         break;
                     case var name when name.Length <= 2:
@@ -115,16 +124,22 @@ internal class Program
                         Console.Clear();
                         return true;
                 }
+                invalidAttempts++;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserLastName()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 7)
         {
             try
             {
@@ -132,7 +147,7 @@ internal class Program
                 information.LastName = Console.ReadLine();
                 switch (information.LastName)
                 {
-                    case null:
+                    case "":
                         Console.WriteLine("your last name was null");
                         break;
                     case var lastName when lastName.Length <= 2:
@@ -148,16 +163,22 @@ internal class Program
                         Console.Clear();
                         return true;
                 }
+                invalidAttempts++;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserFatherName()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 7)
         {
             try
             {
@@ -165,7 +186,7 @@ internal class Program
                 information.FatherName = Console.ReadLine();
                 switch (information.FatherName)
                 {
-                    case null:
+                    case "":
                         Console.WriteLine("You father name was null");
                         break;
 
@@ -183,16 +204,22 @@ internal class Program
                         Console.ReadKey();
                         return true;
                 }
+                invalidAttempts ++;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Invalid input.The error Is{ex.Message}");
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserCellPhone()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 5)
         {
             try
             {
@@ -200,6 +227,9 @@ internal class Program
                 information.Cellphone = Console.ReadLine();
                 switch (information.Cellphone.Substring(0, 1))
                 {
+                    case "":
+                     Console.WriteLine("your cell phone was null");
+                    break;
                     case "+":
                         var res = information.Cellphone.Replace("+", "0");
                         Console.WriteLine(res);
@@ -224,6 +254,13 @@ internal class Program
                         {
                             Console.WriteLine("you enter wrong format do it again");
                         }
+                        else if (string.IsNullOrEmpty(information.Cellphone)) 
+                        {
+                        Console.WriteLine("you cellphone was null");
+                        Console.ReadKey();
+                        invalidAttempts++;
+                        return true;
+                        }
                         else
                         {
                             Console.WriteLine($"This is your cell phone {information.Cellphone}");
@@ -238,12 +275,18 @@ internal class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"The Error Is {ex.Message}");
+                invalidAttempts++;
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+               Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserAge()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 7)
         {
             try
             {
@@ -266,16 +309,22 @@ internal class Program
                     Console.Clear();
                     return true;
                 }
+                invalidAttempts++;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
     static bool UserSelect()
     {
-        while (true)
+        var invalidAttempts = 0;
+        while (invalidAttempts < 3)
         {
             try
             {
@@ -317,12 +366,17 @@ internal class Program
                 else
                 {
                     Console.WriteLine("you didn't press key");
+                    invalidAttempts++;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"The Error is {ex.Message}");
+                Console.WriteLine("press enter key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
+        throw new Exception("Exceeded maximum number of invalid attempts.");
     }
 }
